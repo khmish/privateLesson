@@ -1,0 +1,52 @@
+models:
+  City:
+    name: string:100
+    country_name: string:100
+
+  Leveleducation:
+    name: string:100
+
+  Subject:
+    leveleducation_id: id foreign
+    name: string:100
+    pic: text
+    softDeletes
+
+  User:
+    email: string:100
+    password: string:100
+    dateOfBirth: timestamp
+    exceprience: nullable number
+    gender: number
+    phone: string:15
+    pic: nullable text
+    city_id: id foreign
+    softDeletes
+
+  Role:
+    user_id: id foreign:users
+    name: string:100
+    softDeletes
+    
+  Tutor:
+    user_id: id foreign:users
+    title_cert: string:100
+    price: number
+    type: number
+    softDeletes
+
+  TutorSub:
+    tutor_id: id foreign:tutors
+    subject_id: id foreign:subjects
+    softDeletes
+
+  Lessson:
+    student_id: id foreign:users
+    teacher_id: id foreign:users
+    subject_id: id foreign:subjects
+    date_execution: timestamp
+    state: number
+    softDeletes
+
+
+
