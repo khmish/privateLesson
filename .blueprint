@@ -1,9 +1,88 @@
+created:
+    - app/Http/Controllers/CityController.php
+    - app/Http/Controllers/LeveleducationController.php
+    - app/Http/Controllers/SubjectController.php
+    - app/Http/Controllers/UserController.php
+    - app/Http/Controllers/RoleController.php
+    - app/Http/Controllers/TutorController.php
+    - app/Http/Controllers/TutorSubController.php
+    - app/Http/Controllers/LesssonController.php
+    - database/factories/CityFactory.php
+    - database/factories/LeveleducationFactory.php
+    - database/factories/SubjectFactory.php
+    - database/factories/UserFactory.php
+    - database/factories/RoleFactory.php
+    - database/factories/TutorFactory.php
+    - database/factories/TutorSubFactory.php
+    - database/factories/TutorLevelEducationFactory.php
+    - database/factories/LesssonFactory.php
+    - database/migrations/2021_10_01_163240_create_cities_table.php
+    - database/migrations/2021_10_01_163241_create_leveleducations_table.php
+    - database/migrations/2021_10_01_163242_create_subjects_table.php
+    - database/migrations/2021_10_01_163243_create_users_table.php
+    - database/migrations/2021_10_01_163244_create_roles_table.php
+    - database/migrations/2021_10_01_163245_create_tutors_table.php
+    - database/migrations/2021_10_01_163246_create_tutor_subs_table.php
+    - database/migrations/2021_10_01_163247_create_tutor_level_education_table.php
+    - database/migrations/2021_10_01_163248_create_lesssons_table.php
+    - app/Models/City.php
+    - app/Models/Leveleducation.php
+    - app/Models/Subject.php
+    - app/Models/User.php
+    - app/Models/Role.php
+    - app/Models/Tutor.php
+    - app/Models/TutorSub.php
+    - app/Models/TutorLevelEducation.php
+    - app/Models/Lessson.php
+    - tests/Feature/Http/Controllers/CityControllerTest.php
+    - tests/Feature/Http/Controllers/LeveleducationControllerTest.php
+    - tests/Feature/Http/Controllers/SubjectControllerTest.php
+    - tests/Feature/Http/Controllers/UserControllerTest.php
+    - tests/Feature/Http/Controllers/RoleControllerTest.php
+    - tests/Feature/Http/Controllers/TutorControllerTest.php
+    - tests/Feature/Http/Controllers/TutorSubControllerTest.php
+    - tests/Feature/Http/Controllers/LesssonControllerTest.php
+    - app/Http/Requests/CityStoreRequest.php
+    - app/Http/Requests/CityUpdateRequest.php
+    - app/Http/Requests/LeveleducationStoreRequest.php
+    - app/Http/Requests/LeveleducationUpdateRequest.php
+    - app/Http/Requests/SubjectStoreRequest.php
+    - app/Http/Requests/SubjectUpdateRequest.php
+    - app/Http/Requests/UserStoreRequest.php
+    - app/Http/Requests/UserUpdateRequest.php
+    - app/Http/Requests/RoleStoreRequest.php
+    - app/Http/Requests/RoleUpdateRequest.php
+    - app/Http/Requests/TutorStoreRequest.php
+    - app/Http/Requests/TutorUpdateRequest.php
+    - app/Http/Requests/TutorSubStoreRequest.php
+    - app/Http/Requests/TutorSubUpdateRequest.php
+    - app/Http/Requests/LesssonStoreRequest.php
+    - app/Http/Requests/LesssonUpdateRequest.php
+    - app/Http/Resources/CityCollection.php
+    - app/Http/Resources/CityResource.php
+    - app/Http/Resources/LeveleducationCollection.php
+    - app/Http/Resources/LeveleducationResource.php
+    - app/Http/Resources/SubjectCollection.php
+    - app/Http/Resources/SubjectResource.php
+    - app/Http/Resources/UserCollection.php
+    - app/Http/Resources/UserResource.php
+    - app/Http/Resources/RoleCollection.php
+    - app/Http/Resources/RoleResource.php
+    - app/Http/Resources/TutorCollection.php
+    - app/Http/Resources/TutorResource.php
+    - app/Http/Resources/TutorSubCollection.php
+    - app/Http/Resources/TutorSubResource.php
+    - app/Http/Resources/LesssonCollection.php
+    - app/Http/Resources/LesssonResource.php
+updated:
+    - routes/api.php
 models:
     City: { name: 'string:100', country_name: 'string:100', relationships: { hasMany: User } }
     Leveleducation: { name: 'string:100', relationships: { hasMany: Subject } }
     Subject: { leveleducation_id: 'id foreign', name: 'string:100', pic: text, softdeletes: softDeletes, relationships: { hasMany: Lessson } }
-    User: { email: 'string:100', password: 'string:100', dateOfBirth: timestamp, exceprience: 'nullable number', gender: number, phone: 'string:15', pic: 'nullable text', city_id: 'id foreign', softdeletes: softDeletes, relationships: { hasMany: 'Role,Tutor,Lessson' } }
+    User: { name: string, email: 'unique string', password: string, email_verified_at: 'nullable timestamp', dateOfBirth: 'nullable timestamp', exceprience: 'nullable number', gender: number, phone: 'string:20', pic: 'nullable text', city_id: 'id foreign', softdeletes: softDeletes, relationships: { hasMany: 'Role,Tutor,Lessson' } }
     Role: { user_id: 'id foreign:users', name: 'string:100', softdeletes: softDeletes }
     Tutor: { user_id: 'id foreign:users', title_cert: 'string:100', price: number, type: number, softdeletes: softDeletes }
     TutorSub: { tutor_id: 'id foreign:tutors', subject_id: 'id foreign:subjects', softdeletes: softDeletes }
-    Lessson: { student_id: 'id foreign:users', teacher_id: 'id foreign:users', subject_id: 'id foreign:subjects', date_execution: timestamp, state: number, softdeletes: softDeletes }
+    Lessson: { student_id: 'nullable id foreign:users', teacher_id: 'nullable id foreign:users', subject_id: 'id foreign:subjects', date_execution: timestamp, state: number, softdeletes: softDeletes }
+    TutorLevelEducation: { tutor_id: 'id foreign:tutors', leveleducation_id: 'id foreign', softdeletes: softDeletes }

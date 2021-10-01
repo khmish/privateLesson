@@ -2,25 +2,30 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
-class User extends Authenticatable
+class User extends Model
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasFactory, SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
      *
-     * @var string[]
+     * @var array
      */
     protected $fillable = [
         'name',
         'email',
         'password',
+        'email_verified_at',
+        'dateOfBirth',
+        'exceprience',
+        'gender',
+        'phone',
+        'pic',
+        'city_id',
     ];
 
     /**
@@ -30,15 +35,38 @@ class User extends Authenticatable
      */
     protected $hidden = [
         'password',
-        'remember_token',
     ];
 
     /**
-     * The attributes that should be cast.
+     * The attributes that should be cast to native types.
      *
      * @var array
      */
     protected $casts = [
-        'email_verified_at' => 'datetime',
+        'id' => 'integer',
+        'email_verified_at' => 'timestamp',
+        'dateOfBirth' => 'timestamp',
+        'city_id' => 'integer',
     ];
+
+
+    public function roles()
+    {
+        return $this->hasMany(\App\Models\Role::class);
+    }
+
+    public function tutors()
+    {
+        return $this->hasMany(\App\Models\Tutor::class);
+    }
+
+    public function lesssons()
+    {
+        return $this->hasMany(\App\Models\Lessson::class);
+    }
+
+    public function city()
+    {
+        return $this->belongsTo(\App\Models\City::class);
+    }
 }
