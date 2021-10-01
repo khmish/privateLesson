@@ -2,15 +2,21 @@ models:
   City:
     name: string:100
     country_name: string:100
+    relationships:
+      hasMany: User
 
   Leveleducation:
     name: string:100
+    relationships:
+      hasMany: Subject
 
   Subject:
     leveleducation_id: id foreign
     name: string:100
     pic: text
     softDeletes
+    relationships:
+      hasMany: Lessson
 
   User:
     email: string:100
@@ -22,6 +28,8 @@ models:
     pic: nullable text
     city_id: id foreign
     softDeletes
+    relationships:
+      hasMany: Role,Tutor,Lessson
 
   Role:
     user_id: id foreign:users
@@ -48,5 +56,27 @@ models:
     state: number
     softDeletes
 
+controllers:
+  City:
+    resource: api.index, api.show, api.store, api.update, api.destroy 
 
+  Leveleducation:
+    resource: api.index, api.show, api.store, api.update, api.destroy 
 
+  Subject:
+    resource: api.index, api.show, api.store, api.update, api.destroy 
+
+  User:
+    resource: api.index, api.show, api.store, api.update, api.destroy 
+
+  Role:
+    resource: api.index, api.show, api.store, api.update, api.destroy 
+
+  Tutor:
+    resource: api.index, api.show, api.store, api.update, api.destroy 
+
+  TutorSub:
+    resource: api.index, api.show, api.store, api.update, api.destroy 
+
+  Lessson:
+    resource: api.index, api.show, api.store, api.update, api.destroy 

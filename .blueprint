@@ -1,8 +1,8 @@
 models:
-    City: { name: 'string:100', country_name: 'string:100' }
-    Leveleducation: { name: 'string:100' }
-    Subject: { leveleducation_id: 'id foreign', name: 'string:100', pic: text, softdeletes: softDeletes }
-    User: { email: 'string:100', password: 'string:100', dateOfBirth: timestamp, exceprience: 'nullable number', gender: number, phone: 'string:15', pic: 'nullable text', city_id: 'id foreign', softdeletes: softDeletes }
+    City: { name: 'string:100', country_name: 'string:100', relationships: { hasMany: User } }
+    Leveleducation: { name: 'string:100', relationships: { hasMany: Subject } }
+    Subject: { leveleducation_id: 'id foreign', name: 'string:100', pic: text, softdeletes: softDeletes, relationships: { hasMany: Lessson } }
+    User: { email: 'string:100', password: 'string:100', dateOfBirth: timestamp, exceprience: 'nullable number', gender: number, phone: 'string:15', pic: 'nullable text', city_id: 'id foreign', softdeletes: softDeletes, relationships: { hasMany: 'Role,Tutor,Lessson' } }
     Role: { user_id: 'id foreign:users', name: 'string:100', softdeletes: softDeletes }
     Tutor: { user_id: 'id foreign:users', title_cert: 'string:100', price: number, type: number, softdeletes: softDeletes }
     TutorSub: { tutor_id: 'id foreign:tutors', subject_id: 'id foreign:subjects', softdeletes: softDeletes }
