@@ -26,13 +26,13 @@ class UserFactory extends Factory
         return [
             'name' => $this->faker->name,
             'email' => $this->faker->safeEmail,
-            'password' => $this->faker->password,
-            'email_verified_at' => $this->faker->dateTime(),
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            // 'email_verified_at' => $this->faker->dateTime(),
             'dateOfBirth' => $this->faker->dateTime(),
             'exceprience' => $this->faker->word,
             'gender' => $this->faker->word,
             'phone' => $this->faker->phoneNumber,
-            'pic' => $this->faker->text,
+            // 'pic' => $this->faker->text,
             'city_id' => City::factory(),
         ];
     }

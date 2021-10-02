@@ -87,3 +87,6 @@ controllers:
 
   Lessson:
     resource: api.index, api.show, api.store, api.update, api.destroy 
+
+  TutorLevelEducation:
+    resource: api.index, api.show, api.store, api.update, api.destroy 

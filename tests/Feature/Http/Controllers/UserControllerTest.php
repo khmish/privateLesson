@@ -49,7 +49,7 @@ class UserControllerTest extends TestCase
     {
         $name = $this->faker->name;
         $email = $this->faker->safeEmail;
-        $password = $this->faker->password;
+        $password = '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi';
         $gender = $this->faker->word;
         $phone = $this->faker->phoneNumber;
         $city = City::factory()->create();
@@ -113,7 +113,7 @@ class UserControllerTest extends TestCase
         $user = User::factory()->create();
         $name = $this->faker->name;
         $email = $this->faker->safeEmail;
-        $password = $this->faker->password;
+        $password = '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi';
         $gender = $this->faker->word;
         $phone = $this->faker->phoneNumber;
         $city = City::factory()->create();
