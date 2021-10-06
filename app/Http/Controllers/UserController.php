@@ -8,9 +8,27 @@ use App\Http\Resources\UserCollection;
 use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
+    public function me(Request $request)
+    {
+        return $request->user();
+    }
+    public function login(Request $request)
+    {
+        $email = $request->email;
+        $user = User::where('email', $email)->firstOrFail();
+
+        if (!$user || !Hash::check($request->password, $user->password)) {
+
+            return response(['data' => "invlid password or username"], 400);
+        } else {
+            $token = $user->createToken("token")->plainTextToken;
+            return response(['data' => $token], 200);
+        }
+    }
     /**
      * @param \Illuminate\Http\Request $request
      * @return \App\Http\Resources\UserCollection

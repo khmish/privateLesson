@@ -1,7 +1,9 @@
 <?php
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Hash;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,40 +28,8 @@ Route::apiResource('leveleducation', App\Http\Controllers\LeveleducationControll
 Route::apiResource('subject', App\Http\Controllers\SubjectController::class);
 
 Route::apiResource('user', App\Http\Controllers\UserController::class);
-
-Route::apiResource('role', App\Http\Controllers\RoleController::class);
-
-Route::apiResource('tutor', App\Http\Controllers\TutorController::class);
-
-Route::apiResource('tutor-sub', App\Http\Controllers\TutorSubController::class);
-
-Route::apiResource('lessson', App\Http\Controllers\LesssonController::class);
-
-
-Route::apiResource('city', App\Http\Controllers\CityController::class);
-
-Route::apiResource('leveleducation', App\Http\Controllers\LeveleducationController::class);
-
-Route::apiResource('subject', App\Http\Controllers\SubjectController::class);
-
-Route::apiResource('user', App\Http\Controllers\UserController::class);
-
-Route::apiResource('role', App\Http\Controllers\RoleController::class);
-
-Route::apiResource('tutor', App\Http\Controllers\TutorController::class);
-
-Route::apiResource('tutor-sub', App\Http\Controllers\TutorSubController::class);
-
-Route::apiResource('lessson', App\Http\Controllers\LesssonController::class);
-
-
-Route::apiResource('city', App\Http\Controllers\CityController::class);
-
-Route::apiResource('leveleducation', App\Http\Controllers\LeveleducationController::class);
-
-Route::apiResource('subject', App\Http\Controllers\SubjectController::class);
-
-Route::apiResource('user', App\Http\Controllers\UserController::class);
+Route::post('user/login', [App\Http\Controllers\UserController::class,'login']);
+Route::post('user/me', [App\Http\Controllers\UserController::class,'me']);
 
 Route::apiResource('role', App\Http\Controllers\RoleController::class);
 
