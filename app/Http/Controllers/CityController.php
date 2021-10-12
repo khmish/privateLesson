@@ -18,7 +18,6 @@ class CityController extends Controller
     {
         
         $cities = City::all();
-        debug($cities);
         return new CityCollection($cities);
     }
 
