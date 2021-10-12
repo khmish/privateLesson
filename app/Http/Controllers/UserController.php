@@ -39,7 +39,7 @@ class UserController extends Controller
 
         return new UserCollection($users);
     }
-
+ 
     /**
      * @param \App\Http\Requests\UserStoreRequest $request
      * @return \App\Http\Resources\UserResource
