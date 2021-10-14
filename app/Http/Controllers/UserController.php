@@ -44,11 +44,19 @@ class UserController extends Controller
      * @param \App\Http\Requests\UserStoreRequest $request
      * @return \App\Http\Resources\UserResource
      */
-    public function store(UserStoreRequest $request)
+    public function store(Request $request)
     {
-        $user = User::create($request->validated());
-
-        return new UserResource($user);
+        $user=new User;   
+        $user->name=$request->name;
+        $user->email=$request->email;
+        $user->password=Hash::make($request->password);
+        $user->gender=$request->gender;
+        $user->phone=$request->phone;
+        $user->city_id=$request->city_id;
+        if($user->save()){
+            return $user;
+        }
+        return response(400,"error");
     }
 
     /**
