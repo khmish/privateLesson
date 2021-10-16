@@ -29,7 +29,7 @@ Route::apiResource('subject', App\Http\Controllers\SubjectController::class);
 
 Route::apiResource('user', App\Http\Controllers\UserController::class);
 Route::post('user/login', [App\Http\Controllers\UserController::class,'login']);
-Route::post('user/me', [App\Http\Controllers\UserController::class,'me']);
+Route::post('user/me', [App\Http\Controllers\UserController::class,'me'])->middleware(['auth:sanctum']);
 
 Route::apiResource('role', App\Http\Controllers\RoleController::class);
 

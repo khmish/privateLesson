@@ -14,7 +14,7 @@ class UserController extends Controller
 {
     public function me(Request $request)
     {
-        return $request;
+        return $request->user();
     }
     public function login(Request $request)
     {
