@@ -36,7 +36,12 @@
 
                     <tr>
                         <th>{{ $value->methods()[0] }}</th>
-                        <td>{{ $value->uri() }}</td>
+                        @if ($value->methods()[0] === "GET")
+                        <td><a href="{{url($value->uri())}}">{{$value->uri()}}</a></td>
+                            
+                        @else
+                        <td>{{$value->uri()}}</td>    
+                        @endif
                         <td>{{ $value->getName() }}</td>
                         <td>{{ $value->getActionName() }}</td>
                     </tr>
