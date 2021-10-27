@@ -25,10 +25,18 @@ class LesssonFactory extends Factory
      */
     public function definition()
     {
+        $genders=['male','female'];
         return [
-            'student_id' => User::factory(),
-            'teacher_id' => User::factory()->has(Tutor::factory())->state(function (array $attributes) {
-                return ['role' => "tutor"];
+            'student_id' => User::factory()->state(function (array $attributes) use($genders) {
+                return [
+                    'gender' => $genders[rand(0,1)],
+                ];
+            }),
+            'teacher_id' => User::factory()->has(Tutor::factory())->state(function (array $attributes) use($genders) {
+                return [
+                    'role' => "tutor",
+                    'gender' => $genders[rand(0,1)],
+                ];
             }),
             'subject_id' => Subject::factory(),
             'date_execution' => $this->faker->dateTime(),

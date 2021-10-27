@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
                     'name' => $names[$i],
                     'email' => $emails[$i],
                     'role' => "admin",
+                    'gender' => "male",
                 ];
             })->create();
         }
