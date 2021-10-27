@@ -23,6 +23,7 @@ class UserResource extends JsonResource
             'exceprience' => $this->exceprience,
             'gender' => $this->gender,
             'phone' => $this->phone,
+            'role' => $this->role,
             'pic' => $this->pic,
             'city_id' => $this->city_id,
             'lesssons' => LesssonCollection::make($this->whenLoaded('lesssons')),

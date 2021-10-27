@@ -25,6 +25,7 @@ class CreateUsersTable extends Migration
             $table->string('exceprience')->nullable();
             $table->string('gender');
             $table->string('phone', 20);
+            $table->string('role');
             $table->text('pic')->nullable();
             $table->foreignId('city_id')->constrained();
             $table->softDeletes();

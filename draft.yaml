@@ -27,16 +27,14 @@ models:
     exceprience: nullable number
     gender: number
     phone: string:20
+    role: string
     pic: nullable text
     city_id: id foreign
     softDeletes
     relationships:
-      hasMany: Role,Tutor,Lessson
+      hasMany: Tutor,Lessson
 
-  Role:
-    user_id: id foreign:users
-    name: string:100
-    softDeletes
+  
     
   Tutor:
     user_id: id foreign:users

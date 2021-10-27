@@ -1,13 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Http\Requests\CityStoreRequest;
 use App\Http\Requests\CityUpdateRequest;
 use App\Http\Resources\CityCollection;
 use App\Http\Resources\CityResource;
 use App\Models\City;
 use Illuminate\Http\Request;
-use Debugbar;
+
 class CityController extends Controller
 {
     /**
@@ -16,8 +17,8 @@ class CityController extends Controller
      */
     public function index(Request $request)
     {
-        
         $cities = City::all();
+
         return new CityCollection($cities);
     }
 

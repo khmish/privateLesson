@@ -7,3 +7,6 @@ Route::get('routes', function () {
     
     return view("routes_tabel")->with("routes",$routes);
 });
+
+Route::post('user/login', [App\Http\Controllers\UserController::class,'login']);
+Route::post('user/me', [App\Http\Controllers\UserController::class,'me'])->middleware(['auth:sanctum']);

@@ -12,6 +12,7 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
 
+
     /**
      * The attributes that are mass assignable.
      *
@@ -26,6 +27,7 @@ class User extends Authenticatable
         'exceprience',
         'gender',
         'phone',
+        'role',
         'pic',
         'city_id',
     ];
@@ -51,11 +53,6 @@ class User extends Authenticatable
         'city_id' => 'integer',
     ];
 
-
-    public function roles()
-    {
-        return $this->hasMany(\App\Models\Role::class);
-    }
 
     public function tutors()
     {

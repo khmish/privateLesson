@@ -32,7 +32,8 @@ class UserFactory extends Factory
             'exceprience' => $this->faker->word,
             'gender' => $this->faker->word,
             'phone' => $this->faker->phoneNumber,
-            // 'pic' => $this->faker->text,
+            'role' => "student",
+            'pic' => $this->faker->text,
             'city_id' => City::factory(),
         ];
     }

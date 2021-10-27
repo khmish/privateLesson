@@ -23,8 +23,8 @@ class CityFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->name,
-            'country_name' => $this->faker->regexify('[A-Za-z0-9]{100}'),
+            'name' => $this->faker->city(),
+            'country_name' => $this->faker->country(),
         ];
     }
 }

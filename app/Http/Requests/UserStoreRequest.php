@@ -32,6 +32,7 @@ class UserStoreRequest extends FormRequest
             'exceprience' => ['string'],
             'gender' => ['required', 'string'],
             'phone' => ['required', 'string', 'max:20'],
+            'role' => ['required', 'string'],
             'pic' => ['string'],
             'city_id' => ['required', 'integer', 'exists:cities,id'],
         ];

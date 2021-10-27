@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 use App\Models\Lessson;
 use App\Models\Subject;
+use App\Models\Tutor;
 use App\Models\User;
 
 class LesssonFactory extends Factory
@@ -26,7 +27,9 @@ class LesssonFactory extends Factory
     {
         return [
             'student_id' => User::factory(),
-            'teacher_id' => User::factory(),
+            'teacher_id' => User::factory()->has(Tutor::factory())->state(function (array $attributes) {
+                return ['role' => "tutor"];
+            }),
             'subject_id' => Subject::factory(),
             'date_execution' => $this->faker->dateTime(),
             'state' => $this->faker->word,

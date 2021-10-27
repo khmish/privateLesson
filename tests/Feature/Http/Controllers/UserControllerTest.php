@@ -49,9 +49,10 @@ class UserControllerTest extends TestCase
     {
         $name = $this->faker->name;
         $email = $this->faker->safeEmail;
-        $password = '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi';
+        $password = $this->faker->password;
         $gender = $this->faker->word;
         $phone = $this->faker->phoneNumber;
+        $role = $this->faker->word;
         $city = City::factory()->create();
 
         $response = $this->post(route('user.store'), [
@@ -60,6 +61,7 @@ class UserControllerTest extends TestCase
             'password' => $password,
             'gender' => $gender,
             'phone' => $phone,
+            'role' => $role,
             'city_id' => $city->id,
         ]);
 
@@ -69,6 +71,7 @@ class UserControllerTest extends TestCase
             ->where('password', $password)
             ->where('gender', $gender)
             ->where('phone', $phone)
+            ->where('role', $role)
             ->where('city_id', $city->id)
             ->get();
         $this->assertCount(1, $users);
@@ -113,9 +116,10 @@ class UserControllerTest extends TestCase
         $user = User::factory()->create();
         $name = $this->faker->name;
         $email = $this->faker->safeEmail;
-        $password = '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi';
+        $password = $this->faker->password;
         $gender = $this->faker->word;
         $phone = $this->faker->phoneNumber;
+        $role = $this->faker->word;
         $city = City::factory()->create();
 
         $response = $this->put(route('user.update', $user), [
@@ -124,6 +128,7 @@ class UserControllerTest extends TestCase
             'password' => $password,
             'gender' => $gender,
             'phone' => $phone,
+            'role' => $role,
             'city_id' => $city->id,
         ]);
 
@@ -137,6 +142,7 @@ class UserControllerTest extends TestCase
         $this->assertEquals($password, $user->password);
         $this->assertEquals($gender, $user->gender);
         $this->assertEquals($phone, $user->phone);
+        $this->assertEquals($role, $user->role);
         $this->assertEquals($city->id, $user->city_id);
     }
 
