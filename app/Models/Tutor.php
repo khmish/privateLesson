@@ -33,6 +33,16 @@ class Tutor extends Model
     ];
 
 
+    public function tutorSubs()
+    {
+        return $this->hasMany(\App\Models\TutorSub::class);
+    }
+
+    public function tutorLevelEducations()
+    {
+        return $this->hasMany(\App\Models\TutorLevelEducation::class);
+    }
+
     public function user()
     {
         return $this->belongsTo(\App\Models\User::class);

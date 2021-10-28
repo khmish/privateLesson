@@ -27,6 +27,7 @@ class UserResource extends JsonResource
             'pic' => $this->pic,
             'city_id' => $this->city_id,
             'lesssons' => LesssonCollection::make($this->whenLoaded('lesssons')),
+            'tutor' => TutorResource::make($this->whenLoaded('tutor')),
         ];
     }
 }

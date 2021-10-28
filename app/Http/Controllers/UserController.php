@@ -29,14 +29,44 @@ class UserController extends Controller
             return response(['data' => $token], 200);
         }
     }
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @return \App\Http\Resources\UserCollection
-     */
+    public function search(Request $request)
+    {
+        $users = User::has("tutor");
+        if ($request->gender) {
+            $users->where("gender", $request->gender);
+        }
+        if ($request->city_id) {
+            $users->where("city_id", $request->city_id);
+        }
+        if ($request->leveleducation_id) {
+            $edu_id = $request->leveleducation_id;
+            $users->whereHas('tutor', function ($query) use ($edu_id) {
+                $query->whereHas(
+                    'tutorLevelEducations',
+                    function ($query) use ($edu_id) {
+                        $query->where('leveleducation_id', $edu_id);
+                    }
+                );
+            });
+        }
+        if ($request->subject_id) {
+            $sub_id = $request->subject_id;
+            $users->whereHas('tutor', function ($query) use ($sub_id) {
+                $query->whereHas(
+                    'tutorSubs',
+                    function ($query) use ($sub_id) {
+                        $query->where('subject_id', $sub_id);
+                    }
+                );
+            });
+        }
+        $users = $users->get();
+
+        return new UserCollection($users);
+    }
     public function index(Request $request)
     {
         $users = User::all();
-
         return new UserCollection($users);
     }
 
@@ -46,19 +76,18 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $user=new User;   
-        $user->name=$request->name;
-        $user->email=$request->email;
-        $user->password=Hash::make($request->password);
-        $user->gender=$request->gender;
-        $user->phone=$request->phone;
-        $user->city_id=$request->city_id;
-        if($user->save()){
+        $user = new User;
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
+        $user->gender = $request->gender;
+        $user->phone = $request->phone;
+        $user->city_id = $request->city_id;
+        if ($user->save()) {
             return $user;
         }
-        return response(400,"error");
+        return response(400, "error");
     }
-
     /**
      * @param \Illuminate\Http\Request $request
      * @param \App\Models\User $user

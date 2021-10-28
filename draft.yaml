@@ -32,7 +32,8 @@ models:
     city_id: id foreign
     softDeletes
     relationships:
-      hasMany: Tutor,Lessson
+      hasMany: Lessson
+      hasOne: Tutor
 
   
     
@@ -42,6 +43,8 @@ models:
     price: number
     type: number
     softDeletes
+    relationships:
+      hasMany: TutorSub,TutorLevelEducation
 
   TutorSub:
     tutor_id: id foreign:tutors
@@ -72,9 +75,6 @@ controllers:
     resource: api.index, api.show, api.store, api.update, api.destroy 
 
   User:
-    resource: api.index, api.show, api.store, api.update, api.destroy 
-
-  Role:
     resource: api.index, api.show, api.store, api.update, api.destroy 
 
   Tutor:

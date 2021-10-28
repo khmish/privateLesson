@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 use App\Models\Lessson;
 use App\Models\Subject;
-use App\Models\Tutor;
 use App\Models\User;
+use App\Models\Tutor;
 
 class LesssonFactory extends Factory
 {

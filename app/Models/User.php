@@ -12,7 +12,6 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
 
-
     /**
      * The attributes that are mass assignable.
      *
@@ -54,14 +53,14 @@ class User extends Authenticatable
     ];
 
 
-    public function tutors()
-    {
-        return $this->hasMany(\App\Models\Tutor::class);
-    }
-
     public function lesssons()
     {
         return $this->hasMany(\App\Models\Lessson::class);
+    }
+
+    public function tutor()
+    {
+        return $this->hasOne(\App\Models\Tutor::class);
     }
 
     public function city()

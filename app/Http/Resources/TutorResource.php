@@ -20,6 +20,7 @@ class TutorResource extends JsonResource
             'title_cert' => $this->title_cert,
             'price' => $this->price,
             'type' => $this->type,
+            'tutorLevelEducations' => TutorLevelEducationCollection::make($this->whenLoaded('tutorLevelEducations')),
         ];
     }
 }
