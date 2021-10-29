@@ -87,6 +87,7 @@ class UserController extends Controller
         $user->gender = $request->gender;
         $user->phone = $request->phone;
         $user->city_id = $request->city_id;
+        $user->role = $request->role;
         if ($user->save()) {
             return $user;
         }
