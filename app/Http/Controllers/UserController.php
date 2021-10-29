@@ -32,13 +32,13 @@ class UserController extends Controller
     public function search(Request $request)
     {
         $users = User::has("tutor");
-        if ($request->gender) {
+        if (!is_null($request->gender) && !empty($request->gender)) {
             $users->where("gender", $request->gender);
         }
-        if ($request->city_id) {
+        if (!is_null($request->city_id) && !empty($request->city_id)) {
             $users->where("city_id", $request->city_id);
         }
-        if ($request->leveleducation_id) {
+        if (!is_null($request->leveleducation_id) && !empty($request->leveleducation_id)) {
             $edu_id = $request->leveleducation_id;
             $users->whereHas('tutor', function ($query) use ($edu_id) {
                 $query->whereHas(
