@@ -33,12 +33,16 @@ class UserController extends Controller
     {
         $users = User::has("tutor");
         if (!is_null($request->gender) && !empty($request->gender)) {
+            // log("gender: $request->gender");
             $users->where("gender", $request->gender);
         }
         if (!is_null($request->city_id) && !empty($request->city_id)) {
+            // log("city_id: $request->city_id");
             $users->where("city_id", $request->city_id);
         }
         if (!is_null($request->leveleducation_id) && !empty($request->leveleducation_id)) {
+            // log("leveleducation_id: $request->leveleducation_id");
+
             $edu_id = $request->leveleducation_id;
             $users->whereHas('tutor', function ($query) use ($edu_id) {
                 $query->whereHas(
@@ -49,7 +53,7 @@ class UserController extends Controller
                 );
             });
         }
-        if ($request->subject_id) {
+        if (!is_null($request->subject_id) && !empty($request->subject_id)) {
             $sub_id = $request->subject_id;
             $users->whereHas('tutor', function ($query) use ($sub_id) {
                 $query->whereHas(
