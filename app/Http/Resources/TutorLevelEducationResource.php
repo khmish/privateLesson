@@ -18,6 +18,7 @@ class TutorLevelEducationResource extends JsonResource
             'id' => $this->id,
             'tutor_id' => $this->tutor_id,
             'leveleducation_id' => $this->leveleducation_id,
+            'leveleducation' => $this->leveleducation->name,
         ];
     }
 }

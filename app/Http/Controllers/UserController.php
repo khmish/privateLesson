@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UserStoreRequest;
 use App\Http\Requests\UserUpdateRequest;
 use App\Http\Resources\UserCollection;
+use App\Http\Resources\TutorUserCollection;
 use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -66,7 +67,7 @@ class UserController extends Controller
         }
         $users = $users->get();
 
-        return new UserCollection($users);
+        return TutorUserCollection::collection($users);
     }
     public function index(Request $request)
     {
