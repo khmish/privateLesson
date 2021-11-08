@@ -62,8 +62,10 @@ class TutorController extends Controller
      */
     public function destroy(Request $request, Tutor $tutor)
     {
+        $tutorDel=Tutor::find($tutor->id);
+        // return $tutorDel;
         $tutor->delete();
 
-        return response()->noContent();
+        return response($tutorDel,200);
     }
 }
