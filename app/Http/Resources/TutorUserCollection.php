@@ -26,6 +26,8 @@ class TutorUserCollection extends JsonResource
             "pic" =>$this->pic,
             "city_id" =>$this->city_id,
             "city" =>$this->city->name,
+            "price" =>$this->tutor->price,
+            "cert" =>$this->tutor->title_cert,
             "subjects" =>TutorSubResource::collection($this->tutor->tutorSubs),
             "levelEductions" =>TutorLevelEducationResource::collection($this->tutor->tutorLevelEducations)
         ];
