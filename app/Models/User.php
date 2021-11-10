@@ -47,8 +47,8 @@ class User extends Authenticatable
      */
     protected $casts = [
         'id' => 'integer',
-        'email_verified_at' => 'timestamps',
-        'dateOfBirth' => 'timestamps',
+        'email_verified_at' => 'timestamp',
+        'dateOfBirth' => 'timestamp',
         'city_id' => 'integer',
     ];
 
