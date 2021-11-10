@@ -2,11 +2,13 @@ models:
   City:
     name: string:100
     country_name: string:100
+    softDeletes
     relationships:
       hasMany: User
 
   Leveleducation:
     name: string:100
+    softDeletes
     relationships:
       hasMany: Subject
 
@@ -60,8 +62,8 @@ models:
     student_id: nullable id foreign:users
     teacher_id: nullable id foreign:users
     subject_id: id foreign:subjects
-    date_execution: timestamp
-    state: number
+    date_execution: nullable timestamp
+    state: string
     softDeletes
 
 controllers:

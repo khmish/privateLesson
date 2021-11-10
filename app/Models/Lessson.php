@@ -33,7 +33,7 @@ class Lessson extends Model
         'student_id' => 'integer',
         'teacher_id' => 'integer',
         'subject_id' => 'integer',
-        'date_execution' => 'timestamp',
+        'date_execution' => 'timestamps',
     ];
 
 

@@ -20,7 +20,7 @@ class CreateLesssonsTable extends Migration
             $table->foreignId('student_id')->nullable()->constrained('users');
             $table->foreignId('teacher_id')->nullable()->constrained('users');
             $table->foreignId('subject_id')->constrained();
-            $table->timestamp('date_execution');
+            $table->timestamp('date_execution')->nullable();
             $table->string('state');
             $table->softDeletes();
             $table->timestamps();
