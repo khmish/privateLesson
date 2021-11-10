@@ -18,6 +18,8 @@ class LesssonResource extends JsonResource
             'id' => $this->id,
             'student_id' => $this->student_id,
             'teacher_id' => $this->teacher_id,
+            'student' => UserCollection::make($this->student),
+            'teacher' => UserCollection::make($this->teacher),
             'subject_id' => $this->subject_id,
             'date_execution' => $this->date_execution,
             'state' => $this->state,
