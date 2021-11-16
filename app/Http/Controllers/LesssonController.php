@@ -17,8 +17,31 @@ class LesssonController extends Controller
      */
     public function index(Request $request)
     {
-        $lesssons = Lessson::all();
+        
+        if(!is_null($request->student_id) && !empty($request->student_id)){
 
+            $studentId=$request->student_id;
+            $lesssons = Lessson::whereHas('student',function ($query) use ($studentId) {
+            
+                $query->where('id','=',$studentId);
+            });
+        }
+        if(!is_null($request->teacher_id) && !empty($request->teacher_id)){
+
+            $teacherId=$request->teacher_id;
+            $lesssons = Lessson::whereHas('teacher',function ($query) use ($teacherId) {
+            
+                $query->where('id','=',$teacherId);
+            });
+        }
+        if((is_null($request->student_id) && empty($request->student_id)) && (is_null($request->teacher_id) && empty($request->teacher_id))){
+
+            $lesssons = Lessson::all();
+        }else
+        {
+
+            $lesssons = $lesssons->get();
+        }
         return new LesssonCollection($lesssons);
     }
 
