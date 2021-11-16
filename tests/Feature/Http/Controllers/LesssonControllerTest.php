@@ -48,18 +48,15 @@ class LesssonControllerTest extends TestCase
     public function store_saves()
     {
         $subject = Subject::factory()->create();
-        $date_execution = $this->faker->dateTime();
         $state = $this->faker->word;
 
         $response = $this->post(route('lessson.store'), [
             'subject_id' => $subject->id,
-            'date_execution' => $date_execution,
             'state' => $state,
         ]);
 
         $lesssons = Lessson::query()
             ->where('subject_id', $subject->id)
-            ->where('date_execution', $date_execution)
             ->where('state', $state)
             ->get();
         $this->assertCount(1, $lesssons);
@@ -103,12 +100,10 @@ class LesssonControllerTest extends TestCase
     {
         $lessson = Lessson::factory()->create();
         $subject = Subject::factory()->create();
-        $date_execution = $this->faker->dateTime();
         $state = $this->faker->word;
 
         $response = $this->put(route('lessson.update', $lessson), [
             'subject_id' => $subject->id,
-            'date_execution' => $date_execution,
             'state' => $state,
         ]);
 
@@ -118,7 +113,6 @@ class LesssonControllerTest extends TestCase
         $response->assertJsonStructure([]);
 
         $this->assertEquals($subject->id, $lessson->subject_id);
-        $this->assertEquals($date_execution, $lessson->date_execution);
         $this->assertEquals($state, $lessson->state);
     }
 

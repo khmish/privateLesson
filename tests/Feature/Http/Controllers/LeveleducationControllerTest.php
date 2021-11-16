@@ -121,6 +121,6 @@ class LeveleducationControllerTest extends TestCase
 
         $response->assertNoContent();
 
-        $this->assertDeleted($leveleducation);
+        $this->assertSoftDeleted($leveleducation);
     }
 }

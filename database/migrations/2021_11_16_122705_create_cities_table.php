@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateLeveleducationsTable extends Migration
+class CreateCitiesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,11 @@ class CreateLeveleducationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('leveleducations', function (Blueprint $table) {
+        Schema::create('cities', function (Blueprint $table) {
             $table->id();
             $table->string('name', 100);
+            $table->string('country_name', 100);
+            $table->softDeletes();
             $table->timestamps();
         });
     }
@@ -27,6 +29,6 @@ class CreateLeveleducationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('leveleducations');
+        Schema::dropIfExists('cities');
     }
 }

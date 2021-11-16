@@ -27,7 +27,7 @@ class LesssonUpdateRequest extends FormRequest
             'student_id' => ['integer', 'exists:students,id'],
             'teacher_id' => ['integer', 'exists:teachers,id'],
             'subject_id' => ['required', 'integer', 'exists:subjects,id'],
-            'date_execution' => ['required'],
+            'date_execution' => [''],
             'state' => ['required', 'string'],
         ];
     }

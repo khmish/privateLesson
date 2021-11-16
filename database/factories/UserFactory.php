@@ -29,7 +29,7 @@ class UserFactory extends Factory
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             // 'email_verified_at' => $this->faker->dateTime(),
             'dateOfBirth' => $this->faker->dateTime(),
-            'exceprience' => $this->faker->word,
+            'exceprience' => $this->faker->numberBetween(1,50),
             'gender' => $this->faker->word,
             'phone' => $this->faker->phoneNumber,
             'role' => "student",

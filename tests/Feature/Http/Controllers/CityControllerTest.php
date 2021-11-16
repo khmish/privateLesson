@@ -127,6 +127,6 @@ class CityControllerTest extends TestCase
 
         $response->assertNoContent();
 
-        $this->assertDeleted($city);
+        $this->assertSoftDeleted($city);
     }
 }

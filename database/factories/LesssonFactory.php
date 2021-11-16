@@ -26,6 +26,7 @@ class LesssonFactory extends Factory
     public function definition()
     {
         $genders=['male','female'];
+        $states=['new','accepted','canceled'];
         return [
             'student_id' => User::factory()->state(function (array $attributes) use($genders) {
                 return [
@@ -40,7 +41,7 @@ class LesssonFactory extends Factory
             }),
             'subject_id' => Subject::factory(),
             'date_execution' => $this->faker->dateTime(),
-            'state' => $this->faker->word,
+            'state' => $states[rand(0,2)],
         ];
     }
 }

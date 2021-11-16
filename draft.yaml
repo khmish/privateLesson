@@ -24,8 +24,8 @@ models:
     name: string
     email: unique string
     password: string
-    email_verified_at: nullable timestamp
-    dateOfBirth: nullable timestamp
+    email_verified_at: nullable dateTime
+    dateOfBirth: nullable dateTime
     exceprience: nullable number
     gender: number
     phone: string:20
@@ -62,8 +62,8 @@ models:
     student_id: nullable id foreign:users
     teacher_id: nullable id foreign:users
     subject_id: id foreign:subjects
-    date_execution: nullable timestamp
-    state: string
+    date_execution: nullable dateTime
+    state: number
     softDeletes
 
 controllers:

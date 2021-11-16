@@ -25,8 +25,8 @@ class TutorFactory extends Factory
     {
         return [
             'user_id' => User::factory(),
-            'title_cert' => $this->faker->regexify('[A-Za-z0-9]{100}'),
-            'price' => $this->faker->word,
+            'title_cert' => $this->faker->colorName(),
+            'price' => $this->faker->numberBetween(50,3000),
             'type' => $this->faker->word,
         ];
     }
