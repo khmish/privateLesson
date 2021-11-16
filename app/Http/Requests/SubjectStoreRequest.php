@@ -26,7 +26,7 @@ class SubjectStoreRequest extends FormRequest
         return [
             'leveleducation_id' => ['required', 'integer', 'exists:leveleducations,id'],
             'name' => ['required', 'string', 'max:100'],
-            'pic' => ['required', 'string'],
+            'pic' => [ 'string'],
         ];
     }
 }

@@ -15,7 +15,7 @@ models:
   Subject:
     leveleducation_id: id foreign
     name: string:100
-    pic: text
+    pic: nullable text
     softDeletes
     relationships:
       hasMany: Lessson
