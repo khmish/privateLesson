@@ -51,6 +51,11 @@ class LesssonController extends Controller
      */
     public function store(LesssonStoreRequest $request)
     {
+        $hasLesson=Lessson::where('student_id',$request->student_id)->where('teacher_id',$request->teacher_id)->where('subject_id',$request->subject_id)->get();
+        
+        if(count($hasLesson)>0){
+            return response("you already register",400);
+        }
         $lessson = Lessson::create($request->validated());
 
         return new LesssonResource($lessson);
