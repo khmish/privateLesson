@@ -28,7 +28,7 @@ class UserController extends Controller
             return response(['data' => "invlid password or username"], 400);
         } else {
             $token = $user->createToken("token")->plainTextToken;
-            return response(['data' => $token], 200);
+            return response(['data' => $token, 'user'=>$user], 200);
         }
     }
     public function search(Request $request)
