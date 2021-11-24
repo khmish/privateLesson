@@ -7,6 +7,7 @@ use App\Http\Requests\UserUpdateRequest;
 use App\Http\Resources\UserCollection;
 use App\Http\Resources\TutorUserCollection;
 use App\Http\Resources\UserResource;
+use App\Models\Review;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -68,6 +69,16 @@ class UserController extends Controller
         $users = $users->get();
 
         return TutorUserCollection::collection($users);
+    }
+    public function avarageUser(Request $request)
+    {
+        $reviews =  User::where("id",'=', 2)
+            ->first();
+            
+            $reviews->rating=$reviews->reviews->avg('stars');
+            
+        // ddd($reviews);
+        return $reviews;
     }
     public function index(Request $request)
     {

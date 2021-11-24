@@ -34,6 +34,7 @@ models:
     city_id: id foreign
     softDeletes
     relationships:
+      hasMany: Review
       hasMany: Lessson
       hasOne: Tutor
 
@@ -65,6 +66,13 @@ models:
     date_execution: nullable dateTime
     state: number
     softDeletes
+    
+
+  Review:
+    stars: number:1
+    teacher_id: id foreign:users
+    student_id: id foreign:users
+    softDeletes
 
 controllers:
   City:
@@ -89,4 +97,7 @@ controllers:
     resource: api.index, api.show, api.store, api.update, api.destroy 
 
   TutorLevelEducation:
+    resource: api.index, api.show, api.store, api.update, api.destroy 
+
+  Review:
     resource: api.index, api.show, api.store, api.update, api.destroy 

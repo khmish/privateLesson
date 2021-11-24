@@ -67,4 +67,9 @@ class User extends Authenticatable
     {
         return $this->belongsTo(\App\Models\City::class);
     }
+    public function reviews()
+    {
+        return $this->hasMany(\App\Models\Review::class,'teacher_id');
+    }
+    
 }

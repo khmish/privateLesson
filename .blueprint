@@ -1,76 +1,13 @@
 created:
-    - app/Http/Controllers/CityController.php
-    - app/Http/Controllers/LeveleducationController.php
-    - app/Http/Controllers/SubjectController.php
-    - app/Http/Controllers/UserController.php
-    - app/Http/Controllers/TutorController.php
-    - app/Http/Controllers/TutorSubController.php
-    - app/Http/Controllers/LesssonController.php
-    - app/Http/Controllers/TutorLevelEducationController.php
-    - database/factories/CityFactory.php
-    - database/factories/LeveleducationFactory.php
-    - database/factories/SubjectFactory.php
-    - database/factories/UserFactory.php
-    - database/factories/TutorFactory.php
-    - database/factories/TutorSubFactory.php
-    - database/factories/TutorLevelEducationFactory.php
-    - database/factories/LesssonFactory.php
-    - database/migrations/2021_11_16_122705_create_cities_table.php
-    - database/migrations/2021_11_16_122706_create_leveleducations_table.php
-    - database/migrations/2021_11_16_122707_create_subjects_table.php
-    - database/migrations/2021_11_16_122708_create_users_table.php
-    - database/migrations/2021_11_16_122709_create_tutors_table.php
-    - database/migrations/2021_11_16_122710_create_tutor_subs_table.php
-    - database/migrations/2021_11_16_122711_create_tutor_level_education_table.php
-    - database/migrations/2021_11_16_122712_create_lesssons_table.php
-    - app/Models/City.php
-    - app/Models/Leveleducation.php
-    - app/Models/Subject.php
-    - app/Models/User.php
-    - app/Models/Tutor.php
-    - app/Models/TutorSub.php
-    - app/Models/TutorLevelEducation.php
-    - app/Models/Lessson.php
-    - tests/Feature/Http/Controllers/CityControllerTest.php
-    - tests/Feature/Http/Controllers/LeveleducationControllerTest.php
-    - tests/Feature/Http/Controllers/SubjectControllerTest.php
-    - tests/Feature/Http/Controllers/UserControllerTest.php
-    - tests/Feature/Http/Controllers/TutorControllerTest.php
-    - tests/Feature/Http/Controllers/TutorSubControllerTest.php
-    - tests/Feature/Http/Controllers/LesssonControllerTest.php
-    - tests/Feature/Http/Controllers/TutorLevelEducationControllerTest.php
-    - app/Http/Requests/CityStoreRequest.php
-    - app/Http/Requests/CityUpdateRequest.php
-    - app/Http/Requests/LeveleducationStoreRequest.php
-    - app/Http/Requests/LeveleducationUpdateRequest.php
-    - app/Http/Requests/SubjectStoreRequest.php
-    - app/Http/Requests/SubjectUpdateRequest.php
-    - app/Http/Requests/UserStoreRequest.php
-    - app/Http/Requests/UserUpdateRequest.php
-    - app/Http/Requests/TutorStoreRequest.php
-    - app/Http/Requests/TutorUpdateRequest.php
-    - app/Http/Requests/TutorSubStoreRequest.php
-    - app/Http/Requests/TutorSubUpdateRequest.php
-    - app/Http/Requests/LesssonStoreRequest.php
-    - app/Http/Requests/LesssonUpdateRequest.php
-    - app/Http/Requests/TutorLevelEducationStoreRequest.php
-    - app/Http/Requests/TutorLevelEducationUpdateRequest.php
-    - app/Http/Resources/CityCollection.php
-    - app/Http/Resources/CityResource.php
-    - app/Http/Resources/LeveleducationCollection.php
-    - app/Http/Resources/LeveleducationResource.php
-    - app/Http/Resources/SubjectCollection.php
-    - app/Http/Resources/SubjectResource.php
-    - app/Http/Resources/UserCollection.php
-    - app/Http/Resources/UserResource.php
-    - app/Http/Resources/TutorCollection.php
-    - app/Http/Resources/TutorResource.php
-    - app/Http/Resources/TutorSubCollection.php
-    - app/Http/Resources/TutorSubResource.php
-    - app/Http/Resources/LesssonCollection.php
-    - app/Http/Resources/LesssonResource.php
-    - app/Http/Resources/TutorLevelEducationCollection.php
-    - app/Http/Resources/TutorLevelEducationResource.php
+    - app/Http/Controllers/ReviewController.php
+    - database/factories/ReviewFactory.php
+    - database/migrations/2021_11_24_183529_create_reviews_table.php
+    - app/Models/Review.php
+    - tests/Feature/Http/Controllers/ReviewControllerTest.php
+    - app/Http/Requests/ReviewStoreRequest.php
+    - app/Http/Requests/ReviewUpdateRequest.php
+    - app/Http/Resources/ReviewCollection.php
+    - app/Http/Resources/ReviewResource.php
 updated:
     - routes/api.php
 models:
@@ -83,3 +20,4 @@ models:
     TutorSub: { tutor_id: 'id foreign:tutors', subject_id: 'id foreign:subjects', softdeletes: softDeletes }
     Lessson: { student_id: 'nullable id foreign:users', teacher_id: 'nullable id foreign:users', subject_id: 'id foreign:subjects', date_execution: 'nullable dateTime', state: number, softdeletes: softDeletes }
     TutorLevelEducation: { tutor_id: 'id foreign:tutors', leveleducation_id: 'id foreign', softdeletes: softDeletes }
+    Review: { stars: 'number:1', teacher_id: 'id foreign:users', student_id: 'id foreign:users', softdeletes: softDeletes }

@@ -38,3 +38,6 @@ Route::apiResource('lessson', App\Http\Controllers\LesssonController::class);
 
 Route::apiResource('tutor-level-education', App\Http\Controllers\TutorLevelEducationController::class);
 
+
+
+Route::apiResource('review', App\Http\Controllers\ReviewController::class);
