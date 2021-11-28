@@ -18,7 +18,7 @@ class TutorSubResource extends JsonResource
             'id' => $this->id,
             'tutor_id' => $this->tutor_id,
             'subject_id' => $this->subject_id,
-            'subject' => $this->subject->name,
+            'name' => $this->subject->name,
         ];
     }
 }
