@@ -20,7 +20,7 @@ class LesssonResource extends JsonResource
             'teacher_id' => $this->teacher_id,
             'student' => $this->student,
             'teacher' => $this->teacher,
-            'price' => is_null($this->teacher->tutor) || empty($this->teacher->tutor)?"":$this->teacher->tutor->price,
+            'price' => isset($this->teacher->tutor)?$this->teacher->tutor->price:"",
             'subject' => $this->subject,
             'subject_id' => $this->subject_id,
             'date_execution' => $this->date_execution,
