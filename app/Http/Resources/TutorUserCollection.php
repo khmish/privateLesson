@@ -26,7 +26,7 @@ class TutorUserCollection extends JsonResource
             "pic" =>$this->pic,
             "city_id" =>$this->city_id,
             "city" =>$this->city->name??"",
-            "rating" =>strval($this->reviews->avg('stars'))??strval("0.0"),
+            "rating" =>is_null($this->reviews->avg('stars'))?0.0:$this->reviews->avg('stars'),
             "price" =>$this->tutor->price,
             "cert" =>$this->tutor->title_cert,
             "subjects" =>TutorSubResource::collection($this->tutor->tutorSubs),
