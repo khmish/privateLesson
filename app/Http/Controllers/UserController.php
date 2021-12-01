@@ -70,16 +70,16 @@ class UserController extends Controller
 
         return TutorUserCollection::collection($users);
     }
-    public function avarageUser(Request $request)
-    {
-        $reviews =  User::where("id",'=', 2)
-            ->first();
+    // public function avarageUser(Request $request)
+    // {
+    //     $reviews =  User::where("id",'=', 2)
+    //         ->first();
             
-            $reviews->rating=$reviews->reviews->avg('stars');
+    //         $reviews->rating=$reviews->reviews->avg('stars');
             
-        // ddd($reviews);
-        return $reviews;
-    }
+    //     // ddd($reviews);
+    //     return $reviews;
+    // }
     public function index(Request $request)
     {
         $users = User::all();
