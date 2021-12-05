@@ -101,7 +101,9 @@ class UserController extends Controller
         $user->city_id = $request->city_id;
         $user->role = $request->role;
         if ($user->save()) {
-            return $user;
+            $token = $user->createToken("token")->plainTextToken;
+            return response(['data' => $token, 'user'=>$user], 200);
+            // return $user;
         }
         return response(400, "error");
     }
