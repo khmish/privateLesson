@@ -102,7 +102,7 @@ class UserController extends Controller
         $user->role = $request->role;
         if ($user->save()) {
             $token = $user->createToken("token")->plainTextToken;
-            return response(['data' => $token, 'user'=>$user], 200);
+            return response(['data' => $token, 'user'=>$user], 201);
             // return $user;
         }
         return response(400, "error");
