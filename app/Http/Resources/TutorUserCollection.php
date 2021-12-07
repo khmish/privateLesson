@@ -16,6 +16,7 @@ class TutorUserCollection extends JsonResource
     {
         return [
             "id" =>$this->id,
+            "tutor_id" =>$this->tutor->id,
             "name" =>$this->name,
             "email" =>$this->email,
             "dateOfBirth" =>$this->dateOfBirth,
