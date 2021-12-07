@@ -6,6 +6,7 @@ use App\Http\Requests\TutorStoreRequest;
 use App\Http\Requests\TutorUpdateRequest;
 use App\Http\Resources\TutorCollection;
 use App\Http\Resources\TutorResource;
+use App\Http\Resources\TutorUserCollection;
 use App\Models\Tutor;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -50,8 +51,9 @@ class TutorController extends Controller
      */
     public function getTutorByUser(Request $request, User $user)
     {
-        $tutor=Tutor::where("user_id",$user->id)->first();
-        return new TutorResource($tutor);
+        // $tutor=Tutor::where("user_id",$user->id)->first();
+
+        return TutorUserCollection::collection(User::where('id',$user->id)->get());
     }
 
     /**
