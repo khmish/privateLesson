@@ -13,4 +13,4 @@ Route::post('user/me', [App\Http\Controllers\UserController::class,'me'])->middl
 
 
 Route::post('user/search', [App\Http\Controllers\UserController::class,'search']);
-// Route::get('user/avarageUser', [App\Http\Controllers\UserController::class,'avarageUser']);
+Route::get('tutor/getTutorByUser/{user}', [App\Http\Controllers\TutorController::class,'getTutorByUser']);

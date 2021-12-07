@@ -7,6 +7,7 @@ use App\Http\Requests\TutorUpdateRequest;
 use App\Http\Resources\TutorCollection;
 use App\Http\Resources\TutorResource;
 use App\Models\Tutor;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class TutorController extends Controller
@@ -40,6 +41,16 @@ class TutorController extends Controller
      */
     public function show(Request $request, Tutor $tutor)
     {
+        return new TutorResource($tutor);
+    }
+    /**
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\Tutor $tutor
+     * @return \App\Http\Resources\TutorResource
+     */
+    public function getTutorByUser(Request $request, User $user)
+    {
+        $tutor=Tutor::where("user_id",$user->id)->first();
         return new TutorResource($tutor);
     }
 
