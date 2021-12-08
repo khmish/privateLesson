@@ -17,28 +17,27 @@ class LesssonController extends Controller
      */
     public function index(Request $request)
     {
-        
-        if(!is_null($request->student_id) && !empty($request->student_id)){
 
-            $studentId=$request->student_id;
-            $lesssons = Lessson::whereHas('student',function ($query) use ($studentId) {
-            
-                $query->where('id','=',$studentId);
+        if (!is_null($request->student_id) && !empty($request->student_id)) {
+
+            $studentId = $request->student_id;
+            $lesssons = Lessson::whereHas('student', function ($query) use ($studentId) {
+
+                $query->where('id', '=', $studentId);
             });
         }
-        if(!is_null($request->teacher_id) && !empty($request->teacher_id)){
+        if (!is_null($request->teacher_id) && !empty($request->teacher_id)) {
 
-            $teacherId=$request->teacher_id;
-            $lesssons = Lessson::whereHas('teacher',function ($query) use ($teacherId) {
-            
-                $query->where('id','=',$teacherId);
+            $teacherId = $request->teacher_id;
+            $lesssons = Lessson::whereHas('teacher', function ($query) use ($teacherId) {
+
+                $query->where('id', '=', $teacherId);
             });
         }
-        if((is_null($request->student_id) && empty($request->student_id)) && (is_null($request->teacher_id) && empty($request->teacher_id))){
+        if ((is_null($request->student_id) && empty($request->student_id)) && (is_null($request->teacher_id) && empty($request->teacher_id))) {
 
             $lesssons = Lessson::all();
-        }else
-        {
+        } else {
 
             $lesssons = $lesssons->get();
         }
@@ -49,14 +48,20 @@ class LesssonController extends Controller
      * @param \App\Http\Requests\LesssonStoreRequest $request
      * @return \App\Http\Resources\LesssonResource
      */
-    public function store(LesssonStoreRequest $request)
+    public function store(Request $request)
     {
-        $hasLesson=Lessson::where('student_id',$request->student_id)->where('teacher_id',$request->teacher_id)->where('subject_id',$request->subject_id)->get();
-        
-        if(count($hasLesson)>0){
-            return response("you already register",400);
+        $hasLesson = Lessson::where('student_id', $request->student_id)->where('teacher_id', $request->teacher_id)->where('subject_id', $request->subject_id)->get();
+
+        if (count($hasLesson) > 0) {
+            return response("you already register", 400);
         }
-        $lessson = Lessson::create($request->validated());
+        $lessson = Lessson::create([
+            'student_id' => $request->student_id,
+            'teacher_id' => $request->teacher_id,
+            'subject_id' => $request->subject_id,
+            'date_execution' => $request->date_execution,
+            'state' => $request->state,
+        ]);
 
         return new LesssonResource($lessson);
     }
