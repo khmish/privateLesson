@@ -26,9 +26,9 @@ class LesssonStoreRequest extends FormRequest
         return [
             'student_id' => ['integer', 'exists:users,id'],
             'teacher_id' => ['integer', 'exists:users,id'],
-            'subject_id' => ['required', 'integer', 'exists:subjects,id'],
+            'subject_id' => [ 'integer', 'exists:subjects,id'],
             'date_execution' => [],
-            'state' => ['required', 'string'],
+            'state' => [ 'string'],
         ];
     }
 }
