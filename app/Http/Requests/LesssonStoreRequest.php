@@ -24,9 +24,9 @@ class LesssonStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'student_id' => ['integer'],
-            'teacher_id' => ['integer'],
-            'subject_id' => [ 'integer', 'exists:subjects,id'],
+            'student_id' => ['integer', 'exists:users,id'],
+            'teacher_id' => ['integer', 'exists:users,id'],
+            'subject_id' => [ 'integer'],
             'date_execution' => [],
             'state' => [ 'string'],
         ];

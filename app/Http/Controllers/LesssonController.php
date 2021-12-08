@@ -48,7 +48,7 @@ class LesssonController extends Controller
      * @param \App\Http\Requests\LesssonStoreRequest $request
      * @return \App\Http\Resources\LesssonResource
      */
-    public function store(Request $request)
+    public function store(LesssonStoreRequest $request)
     {
         $hasLesson = Lessson::where('student_id', $request->student_id)->where('teacher_id', $request->teacher_id)->where('subject_id', $request->subject_id)->get();
 
