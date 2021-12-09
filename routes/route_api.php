@@ -11,6 +11,7 @@ Route::get('routes', function () {
 Route::post('user/login', [App\Http\Controllers\UserController::class,'login']);
 Route::post('user/me', [App\Http\Controllers\UserController::class,'me'])->middleware(['auth:sanctum']);
 
+Route::post('tutor-sub/storeArray', [App\Http\Controllers\TutorSubController::class,'storeArray']);
 
 Route::post('user/search', [App\Http\Controllers\UserController::class,'search']);
 Route::get('tutor/getTutorByUser/{user}', [App\Http\Controllers\TutorController::class,'getTutorByUser']);
