@@ -45,8 +45,8 @@ class TutorSubController extends Controller
         $collectValues = collect($request->tutorSubList);
         $tuts = $collectValues->pluck('tutor_id');
         $subs = $collectValues->pluck('subject_id');
-        $deletNotIn=TutorSub::where('tutor_id',$tuts[0])->whereNotIn('subject_id',$subs)->delete();
         $restoredIn=TutorSub::withTrashed()->where('tutor_id', $tuts[0])->whereIn('subject_id', $subs)->restore();
+        $deletNotIn=TutorSub::where('tutor_id',$tuts[0])->whereNotIn('subject_id',$subs)->delete();
         if($restoredIn<count($subs)){
 
             for ($i = 0; $i < count($subs); $i++) {
