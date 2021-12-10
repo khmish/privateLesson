@@ -40,25 +40,28 @@ class TutorSubController extends Controller
     }
     public function storeArray(Request $request)
     {
-        // $values = $request->tutorSubList;
+
+        // // $values = $request->tutorSubList;
         $collectValues = collect($request->tutorSubList);
         $tuts = $collectValues->pluck('tutor_id');
         $subs = $collectValues->pluck('subject_id');
-        
-        for ($i = 0; $i < count($subs); $i++) {
-            TutorSub::withTrashed()->where('tutor_id', $tuts[$i])->where('subject_id', $subs[$i])->restore();
-            $resultTutSubs = TutorSub::where('tutor_id', $tuts[$i])->where('subject_id', $subs[$i])->first();
-            if ($resultTutSubs) {
+        $deletNotIn=TutorSub::where('tutor_id',$tuts[0])->whereNotIn('subject_id',$subs)->delete();
+        $restoredIn=TutorSub::withTrashed()->where('tutor_id', $tuts[0])->whereIn('subject_id', $subs)->restore();
+        if($restoredIn<count($subs)){
 
-                $collectValues = $collectValues->reject(function ($data) use ($tuts, $subs, $i) {
-                    return $data['tutor_id'] == $tuts[$i] &&  $data['subject_id'] == $subs[$i];
-                });
+            for ($i = 0; $i < count($subs); $i++) {
+                $resultTutSubs = TutorSub::where('tutor_id', $tuts[$i])->where('subject_id', $subs[$i])->first();
+                if ($resultTutSubs) {
+                    $collectValues = $collectValues->reject(function ($data) use ($tuts, $subs, $i) {
+                        return $data['tutor_id'] == $tuts[$i] &&  $data['subject_id'] == $subs[$i];
+                    });
+                }
             }
-        }
-        
-        if (count($collectValues) > 0 && DB::table('tutor_subs')->insert($collectValues->toArray())) {
-            TutorSub::where('tutor_id',$tuts[0])->whereNotIn('subject_id',$subs)->delete();
-            return response(["message" => "saved"], 201);
+            
+            if (count($collectValues) > 0 && DB::table('tutor_subs')->insert($collectValues->toArray())) {
+                
+                return response(["message" => "saved"], 201);
+            }
         }
 
 
