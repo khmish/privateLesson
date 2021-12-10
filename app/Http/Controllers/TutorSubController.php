@@ -30,6 +30,7 @@ class TutorSubController extends Controller
     public function store(TutorSubStoreRequest $request)
     {
         TutorSub::withTrashed()->where('tutor_id', $request->tutor_id)->where('subject_id', $request->subject_id)->restore();
+        $deletNotIn=TutorSub::where('tutor_id',$request->tutor_id)->whereNotIn('subject_id',$request->subject_id)->delete();
         $resultTutSubs = TutorSub::where('tutor_id', $request->tutor_id)->where('subject_id', $request->subject_id)->first();
         if (is_null($resultTutSubs)) {
             $tutorSub = TutorSub::create($request->validated());
