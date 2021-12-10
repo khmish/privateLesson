@@ -29,14 +29,14 @@ class TutorSubController extends Controller
      */
     public function store(TutorSubStoreRequest $request)
     {
-        TutorSub::where('tutor_id', $request->tutor_id)->where('subject_id', $request->subject_id)->restore();
-        $resultTutSubs = TutorSub::where('tutor_id', $request->tutor_id)->where('subject_id', $request->subject_id)->first();
-        if (count($resultTutSubs)==0) {
-            $tutorSub = TutorSub::create($request->validated());
+        $tutorSub = TutorSub::create($request->validated());
 
-            return new TutorSubResource($tutorSub);
-        }
-        return response(["message" => "error"], 400);
+        return new TutorSubResource($tutorSub);
+        // TutorSub::where('tutor_id', $request->tutor_id)->where('subject_id', $request->subject_id)->restore();
+        // $resultTutSubs = TutorSub::where('tutor_id', $request->tutor_id)->where('subject_id', $request->subject_id)->first();
+        // if (count($resultTutSubs)==0) {
+        // }
+        // return response(["message" => "error"], 400);
     }
     public function storeArray(Request $request)
     {
