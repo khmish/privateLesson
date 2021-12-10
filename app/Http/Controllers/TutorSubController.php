@@ -29,7 +29,7 @@ class TutorSubController extends Controller
      */
     public function store(TutorSubStoreRequest $request)
     {
-        TutorSub::where('tutor_id', $request->tutor_id)->where('subject_id', $request->subject_id)->restore();
+        // TutorSub::where('tutor_id', $request->tutor_id)->where('subject_id', $request->subject_id)->restore();
         $resultTutSubs = TutorSub::where('tutor_id', $request->tutor_id)->where('subject_id', $request->subject_id)->first();
         if (count($resultTutSubs)==0) {
             $tutorSub = TutorSub::create($request->validated());
