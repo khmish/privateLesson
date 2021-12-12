@@ -15,3 +15,4 @@ Route::post('tutor-sub/storeArray', [App\Http\Controllers\TutorSubController::cl
 
 Route::post('user/search', [App\Http\Controllers\UserController::class,'search']);
 Route::get('tutor/getTutorByUser/{user}', [App\Http\Controllers\TutorController::class,'getTutorByUser']);
+Route::post('review/getRating', [App\Http\Controllers\ReviewController::class,'getRating']);

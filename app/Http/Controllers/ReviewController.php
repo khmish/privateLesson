@@ -55,6 +55,11 @@ class ReviewController extends Controller
     {
         return new ReviewResource($review);
     }
+    public function getRating(Request $request)
+    {
+        $hasReview=Review::where('teacher_id',$request->teacher_id)->where('student_id',$request->student_id)->firstOrFail();
+        return new ReviewResource($hasReview);
+    }
 
     /**
      * @param \App\Http\Requests\ReviewUpdateRequest $request
