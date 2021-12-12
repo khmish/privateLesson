@@ -35,13 +35,13 @@ class ReviewController extends Controller
      */
     public function store(ReviewStoreRequest $request)
     {
-        $hasReview=Review::where('teacher_id',$request->teacher_id)->where('student_id',$request->student_id)->get();
-        if($hasReview){
+        // $hasReview=Review::where('teacher_id',$request->teacher_id)->where('student_id',$request->student_id)->get();
+        // if($hasReview){
 
             $review = Review::create($request->validated());
     
-            return response(["data"=>$hasReview],201);
-        }
+            return response(["data"=>$review],201);
+        // }
         
         return response(['message','you already have voted!'],400);
     }
