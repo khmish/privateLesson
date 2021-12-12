@@ -40,6 +40,7 @@ class ReviewController extends Controller
             $review =new Review;
             $review->teacher_id=$request->teacher_id;
             $review->student_id=$request->student_id;
+            $review->stars=$request->stars;
             if($review->save()){
 
                 return response(["data"=>$review],201);
