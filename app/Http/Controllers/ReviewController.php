@@ -35,8 +35,8 @@ class ReviewController extends Controller
      */
     public function store(ReviewStoreRequest $request)
     {
-        $hasReview=Review::where('teacher_id',$request->teacher_id)->where('student_id',$request->student_id)->get();
-        if(count($hasReview)==0){
+        $hasReview=Review::where('teacher_id',$request->teacher_id)->where('student_id',$request->student_id)->firstOrFail();
+        if($hasReview){
 
             $review = Review::create($request->validated());
     
