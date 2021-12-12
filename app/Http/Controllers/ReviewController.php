@@ -33,10 +33,10 @@ class ReviewController extends Controller
      * @param \App\Http\Requests\ReviewStoreRequest $request
      * @return \App\Http\Resources\ReviewResource
      */
-    public function store(Request $request)
+    public function store(ReviewStoreRequest $request)
     {
         $hasReview=Review::where('teacher_id',$request->teacher_id)->where('student_id',$request->student_id)->get();
-        if($hasReview){
+        if(count($hasReview)==0){
             $review =new Review;
             $review->teacher_id=$request->teacher_id;
             $review->student_id=$request->student_id;
