@@ -40,7 +40,7 @@ class ReviewController extends Controller
 
             $review = Review::create($request->validated());
     
-            return new ReviewResource($review);
+            return response(["data"=>$hasReview],201);
         }
         
         return response(['message','you already have voted!'],400);
@@ -58,7 +58,7 @@ class ReviewController extends Controller
     public function getRating(Request $request)
     {
         $hasReview=Review::where('teacher_id',$request->teacher_id)->where('student_id',$request->student_id)->firstOrFail();
-        return new ReviewResource($hasReview);
+        return response(["data"=>$hasReview],200);
     }
 
     /**
