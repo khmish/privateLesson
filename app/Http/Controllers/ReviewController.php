@@ -33,7 +33,7 @@ class ReviewController extends Controller
      * @param \App\Http\Requests\ReviewStoreRequest $request
      * @return \App\Http\Resources\ReviewResource
      */
-    public function store(ReviewStoreRequest $request)
+    public function store(Request $request)
     {
         // $hasReview=Review::where('teacher_id',$request->teacher_id)->where('student_id',$request->student_id)->get();
         // if($hasReview){
