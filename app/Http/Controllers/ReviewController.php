@@ -37,10 +37,15 @@ class ReviewController extends Controller
     {
         // $hasReview=Review::where('teacher_id',$request->teacher_id)->where('student_id',$request->student_id)->get();
         // if($hasReview){
+            $review =new Review;
+            $review->teacher_id=$request->teacher_id;
+            $review->student_id=$request->student_id;
+            if($review->save()){
 
-            $review = Review::create($request->validated());
+                return response(["data"=>$review],201);
+            }
+            // $review = Review::create($request->validated());
     
-            return response(["data"=>$review],201);
         // }
         
         return response(['message','you already have voted!'],400);
